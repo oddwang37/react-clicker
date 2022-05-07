@@ -1,23 +1,18 @@
 import styled from 'styled-components';
+import Upgrades from './components/Upgrades/Upgrades';
+import GameField from './components/GameField';
 
-function App() {
+const App = () => {
   return (
     <Root>
-      <MainButton>Click</MainButton>
+      <GameField />
+      <Upgrades />
     </Root>
   );
-}
+};
 
 export default App;
 
 const Root = styled.div`
   display: flex;
-  justify-content: center;
-  align-items: center;
-  margin: - 
-`
-
-const MainButton = styled.button`
-  width: 300px;
-  height: 50px;
-`
+`;

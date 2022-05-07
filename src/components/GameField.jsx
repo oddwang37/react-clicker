@@ -3,6 +3,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import styled from 'styled-components';
 
 import { increment, incrementByAmount } from './../redux/features/upgradesSlice';
+import cookie from '../assets/icons/cookie.svg';
 
 const GameField = () => {
   const counter = useSelector((store) => store.upgrades.sum);
@@ -14,13 +15,17 @@ const GameField = () => {
     if (tick) {
       clearInterval(tick);
     }
-    tick = setInterval(() => setTimeout(dispatch(incrementByAmount(perSecond)), 1000), 1000);
+    tick = setInterval(() => {
+      dispatch(incrementByAmount(perSecond));
+    }, 1000);
   }, [perSecond]);
   return (
     <Root>
-      <MainButton onClick={() => dispatch(increment())}>Click</MainButton>
-      <div>{perSecond.toFixed(2)} per second</div>
-      <div>{counter.toFixed(2)}</div>
+      <Cookies>{counter.toFixed(2)} cookies</Cookies>
+      <PerSecond>{perSecond.toFixed(2)} per second</PerSecond>
+      <Icon>
+        <img src={cookie} onClick={() => dispatch(increment())} alt="cookie" />
+      </Icon>
     </Root>
   );
 };
@@ -28,16 +33,35 @@ const GameField = () => {
 export default GameField;
 
 const Root = styled.div`
+  width: 100%;
+  margin: 0 auto;
+  padding: 3%;
   display: flex;
   flex-direction: column;
-  justify-content: space-between;
   align-items: center;
-  margin: 0 auto;
-  padding: 5%;
+  height: 100vh;
 `;
 
-const MainButton = styled.button`
-  width: 300px;
-  height: 50px;
-  display: block;
+const PerSecond = styled.div`
+  font-size: 20px;
+  text-transform: uppercase;
+  color: #fff;
+  margin-top: 3%;
+  font-size: 20px;
+`;
+const Cookies = styled.div`
+  font-family: 'Organic Relief';
+  text-transform: uppercase;
+  color: #2c1e11;
+  font-size: 18px;
+  background-color: #ffc384;
+  border: 3px solid #984b1f;
+  padding: 20px;
+  border-radius: 50px;
+`;
+
+const Icon = styled.div`
+  width: 35%;
+  margin-top: 4%;
+  cursor: pointer;
 `;

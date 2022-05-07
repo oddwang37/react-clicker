@@ -54,7 +54,7 @@ export const upgradesSlice = createSlice({
         state.sum -= building.price;
         building.price *= 1.15;
         building.info.owned += 1;
-        state.perSecond += building.info.owned * building.info.onePerSecond;
+        state.perSecond = building.info.owned * building.info.onePerSecond;
       }
     },
   },
